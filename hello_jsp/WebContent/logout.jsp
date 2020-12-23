@@ -15,11 +15,11 @@
 			String sValue = (String)session.getAttribute(sName);
 			
 			if (sValue.equals("min")) {
-				out.println(sValue + "님 안녕하세요 <br>");
+				session.removeAttribute(sName);
 			}
 		}
 		%>
-		
-		<a href="logout.jsp">logout</a>
+		로그아웃 되었습니다.<br>
+		<a href="login.html">login</a>
 	</body>
 </html>

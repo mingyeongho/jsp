@@ -13,9 +13,7 @@
 		pw = request.getParameter("pw");
 		
 		if (id.equals("min") && pw.equals("qwe123")) {
-			Cookie cookie = new Cookie("id", id);
-			cookie.setMaxAge(60);
-			response.addCookie(cookie);
+			session.setAttribute("id", id);
 			response.sendRedirect("welcome.jsp");
 		} else {
 			response.sendRedirect("login.html");
