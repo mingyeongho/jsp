@@ -32,5 +32,6 @@
 		int[] iArr = {1,2,3};
 		out.println(Arrays.toString(iArr));
 		%>
+		
 	</body>
 </html>
