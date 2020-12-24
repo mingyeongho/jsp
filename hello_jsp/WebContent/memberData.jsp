@@ -40,7 +40,7 @@
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
-		} finally {
+		} finally { // ÇÊ¼ö
 			try {
 				if (resultSet != null) {
 					resultSet.close();
