@@ -48,7 +48,7 @@ public class Modified extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setCharacterEncoding("EUC-KR");
+		request.setCharacterEncoding("EUC-KR");
 		httpSession = request.getSession();
 		
 		name = request.getParameter("name");
@@ -64,7 +64,7 @@ public class Modified extends HttpServlet {
 			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "scott", "tiger");
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(updateQuery);
-			System.out.println("Sign in");
+			System.out.println("Modified");
 			response.sendRedirect("login.html");
 		} catch(Exception e) {
 			e.printStackTrace();
