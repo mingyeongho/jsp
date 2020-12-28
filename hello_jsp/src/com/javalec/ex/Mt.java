@@ -1,17 +1,19 @@
 package com.javalec.ex;
 
-public class MemberDTO {
+public class Mt {
 	private String name;
 	private String id;
 	private String pw;
-	private String address;
+	private String phone2;
+	private String phone3;
 	
-	public MemberDTO(String name, String id, String pw, String address) {
+	public Mt(String name, String id, String pw, String phone2, String phone3) {
 		super();
 		this.name = name;
 		this.id = id;
 		this.pw = pw;
-		this.address = address;
+		this.phone2 = phone2;
+		this.phone3 = phone3;
 	}
 
 	public String getName() {
@@ -38,13 +40,20 @@ public class MemberDTO {
 		this.pw = pw;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getPhone2() {
+		return phone2;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setPhone2(String phone2) {
+		this.phone2 = phone2;
 	}
-	
+
+	public String getPhone3() {
+		return phone3;
+	}
+
+	public void setPhone3(String phone3) {
+		this.phone3 = phone3;
+	}
 	
 }

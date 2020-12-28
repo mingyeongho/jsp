@@ -36,10 +36,9 @@ public class MemberDAO {
 				String name = resultSet.getString("name");
 				String id = resultSet.getString("id");
 				String pw = resultSet.getString("pw");
-				String phone2 = resultSet.getString("phone2");
-				String phone3 = resultSet.getString("phone3");
+				String address = resultSet.getString("address");
 				
-				MemberDTO dto = new MemberDTO(name, id, pw, phone2, phone3);
+				MemberDTO dto = new MemberDTO(name, id, pw, address);
 				dtos.add(dto);
 			}
 		} catch (Exception e) {

@@ -3,7 +3,6 @@ package com.javalec.ex;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -11,26 +10,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class JoinOk
+ * Servlet implementation class Login
  */
-@WebServlet("/JoinOk")
-public class JoinOk extends HttpServlet {
+@WebServlet("/Login")
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private Connection connection;
 	private Statement statement;
-	private ResultSet resultSet;
 	
-	String name, id, pw, phone2, phone3;
-	
-       
+	String id, pw;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JoinOk() {
+    public Login() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -52,41 +47,32 @@ public class JoinOk extends HttpServlet {
 	}
 	
 	protected void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		request.setCharacterEncoding("EUC-KR");
 		
 		id = request.getParameter("id");
 		pw = request.getParameter("pw");
 		
-		String searchIDQuery = "select * from member where id = '" + id + "' and pw = '" + pw + "'";
+		String query = "select * from member where id = '" + id +"' and pw = '" + pw + "'";
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "scott", "tiger");
 			statement = connection.createStatement();
-			resultSet = statement.executeQuery(searchIDQuery);
-			
-			while (resultSet.next()) {
-				name = resultSet.getString("name");
-				id = resultSet.getString("id");
-				pw = resultSet.getString("pw");
-				phone2 = resultSet.getString("phone2");
-				phone3 = resultSet.getString("phone3");
+			int i = statement.executeUpdate(query);
+			if (i == 1) {
+				System.out.println("Login");
+				response.sendRedirect("loginOk.jsp");
+			} else {
+				System.out.println("failure");
+				response.sendRedirect("login.jsp");
 			}
-			
-			HttpSession httpSession = request.getSession();
-			httpSession.setAttribute("name", name);
-			httpSession.setAttribute("id", id);
-			httpSession.setAttribute("pw", pw);
-			
-			response.sendRedirect("homepage.jsp");
-			
 		} catch(Exception e) {
 			e.printStackTrace();
+			System.out.println("failure");
+			response.sendRedirect("login.jsp");
 		} finally {
 			try {
-				if (resultSet != null) {
-					resultSet.close();
-				}
 				if (statement != null) {
 					statement.close();
 				}
@@ -97,7 +83,6 @@ public class JoinOk extends HttpServlet {
 				
 			}
 		}
-		
 	}
-	
+
 }

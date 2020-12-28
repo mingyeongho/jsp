@@ -21,7 +21,7 @@ public class Signin extends HttpServlet {
 	private Connection connection;
 	private Statement statement;
 	
-	String name, id, pw, phone2, phone3;
+	String name, id, pw, address;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,7 +36,7 @@ public class Signin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		actionDo(request, response);
 	}
 
 	/**
@@ -44,15 +44,20 @@ public class Signin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		actionDo(request, response);
+		
+	}
+	
+	protected void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		request.setCharacterEncoding("EUC-KR");
 		
 		name = request.getParameter("name");
 		id = request.getParameter("id");
 		pw = request.getParameter("pw");
-		phone2 = request.getParameter("phone2");
-		phone3 = request.getParameter("phone3");
+		address = request.getParameter("address");
 		
-		String insertQuery = "insert into member values ('" + name + "', '" + id + "', '" + pw + "', '" + phone2 + "', '" + phone3 + "')";
+		String insertQuery = "insert into member values ('" + name + "', '" + id + "', '" + pw + "', '" + address + "')";
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -61,15 +66,15 @@ public class Signin extends HttpServlet {
 			int i = statement.executeUpdate(insertQuery);
 			if (i == 1) {
 				System.out.println("Sign in");
-				response.sendRedirect("login.html");
+				response.sendRedirect("signinOk.jsp");
 			} else {
 				System.out.println("failure");
-				response.sendRedirect("signin.html");
+				response.sendRedirect("signin.jsp");
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("failure");
-			response.sendRedirect("signin.html");
+			response.sendRedirect("signin.jsp");
 		} finally {
 			try {
 				if (statement != null) {
@@ -82,7 +87,6 @@ public class Signin extends HttpServlet {
 				
 			}
 		}
-		
 	}
 
 }
