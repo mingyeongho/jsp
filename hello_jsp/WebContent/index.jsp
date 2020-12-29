@@ -8,6 +8,12 @@
 	</head>
 	<body>
 		메인화면
+		<%
+		String id = (String)session.getAttribute("id");
+		String name = (String)session.getAttribute("name");
+		%>
+		
+		<%= name %>님의 메인화면.
 		<a href="logout.jsp">로그아웃</a>
 	</body>
 </html>

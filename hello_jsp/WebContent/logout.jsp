@@ -9,6 +9,12 @@
 	</head>
 	<body>
 		로그아웃되었습니다.
+		<%
+		session.removeAttribute("id");
+		session.removeAttribute("name");
+		session.removeAttribute("pw");
+		%>
 		<a href="login.jsp">로그인화면 가기</a>
+		
 	</body>
 </html>

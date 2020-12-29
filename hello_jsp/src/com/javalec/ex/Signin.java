@@ -21,7 +21,7 @@ public class Signin extends HttpServlet {
 	private Connection connection;
 	private Statement statement;
 	
-	String name, id, pw, address;
+	String name, id, pw, pw_check, address;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -55,7 +55,13 @@ public class Signin extends HttpServlet {
 		name = request.getParameter("name");
 		id = request.getParameter("id");
 		pw = request.getParameter("pw");
+		pw_check = request.getParameter("pw_check");
 		address = request.getParameter("address");
+		
+		if (!pw.equals(pw_check)) {
+			System.out.println("failure");
+			response.sendRedirect("signin.jsp");
+		}
 		
 		String insertQuery = "insert into member values ('" + name + "', '" + id + "', '" + pw + "', '" + address + "')";
 		

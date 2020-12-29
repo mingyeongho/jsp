@@ -19,9 +19,9 @@
 			String name = dto.getName();
 			String id = dto.getId();
 			String pw = dto.getPw();
-			String phone = "010" + dto.getPhone2() + dto.getPhone3();
+			// String phone = "010" + dto.getPhone2() + dto.getPhone3();
 			
-			out.println("이름 : " + name + ", 아이디 : " + id + ", 비밀번호 : " + pw + ", 연락처 : " + phone + "<br>");
+			// out.println("이름 : " + name + ", 아이디 : " + id + ", 비밀번호 : " + pw + ", 연락처 : " + phone + "<br>");
 		}
 		%>
 	</body>
